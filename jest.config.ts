@@ -7,7 +7,7 @@ const config: Config = {
   transform: {
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
-      { tsconfig: '<rootDir>/tsconfig.json', babelConfig: true },
+      { tsconfig: '<rootDir>/tsconfig.test.json', babelConfig: true },
     ],
     '^.+\\.(js|jsx)$': 'babel-jest',
   },

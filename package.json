@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --config jest.config.ts",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "next": "14.2.20",
