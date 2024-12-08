@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  @apply bg-off-white-500 text-dim-gray-600;
+  @apply bg-off-white-500 text-dim-gray-600 font-noto-sans;
 }
 
 .dark body {
