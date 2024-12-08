@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import ReduxProvider from '@/components/providers/ReduxProvider'
+import Modal from '@/components/common/Modal/Modal'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +14,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             rel="stylesheet"
           />
         </head>
-        <body className="antialiased">{children}</body>
+        <body className="antialiased">
+          {children}
+          <Modal />
+        </body>
       </html>
     </ReduxProvider>
   )
