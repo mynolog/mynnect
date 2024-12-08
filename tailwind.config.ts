@@ -19,10 +19,6 @@ const config: Config = {
         'off-white-500': '#f5f5f5',
         'dim-gray-600': '#444444',
       },
-      fontFamily: {
-        'noto-sans': ['Noto Sans KR', 'sans-serif'],
-        righteous: ['Righteous', 'cursive'],
-      },
     },
   },
   plugins: [],

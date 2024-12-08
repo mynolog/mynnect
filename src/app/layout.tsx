@@ -1,20 +1,18 @@
+import { Noto_Sans_KR } from 'next/font/google'
 import '../styles/globals.css'
 import ReduxProvider from '@/components/providers/ReduxProvider'
 import Modal from '@/components/common/Modal/Modal'
+
+const notoSansKR = Noto_Sans_KR({
+  weight: ['300', '500', '700', '900'],
+  subsets: ['latin'],
+})
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ReduxProvider>
       <html lang="ko">
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Righteous&display=swap"
-            rel="stylesheet"
-          />
-        </head>
-        <body className="antialiased">
+        <body className={`${notoSansKR.className} antialiased`}>
           {children}
           <Modal />
         </body>
