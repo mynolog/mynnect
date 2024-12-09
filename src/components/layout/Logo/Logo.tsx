@@ -7,15 +7,18 @@ const righteous = Righteous({
 
 type LogoProps = {
   type: 'full' | 'short'
+  textColor?: 'text-off-white-500' | 'lime-green-300'
+  fontSize?: 'text-5xl' | 'text-7xl'
 }
 
-export default function Logo({ type }: LogoProps) {
+export default function Logo({
+  type,
+  textColor = 'text-off-white-500',
+  fontSize = 'text-7xl',
+}: LogoProps) {
   return (
-    <div
-      className={`${righteous.className} w-64 h-16 flex justify-center items-center`}
-      data-testid="logo"
-    >
-      <span className="text-7xl text-off-white-500">{type === 'full' ? 'mynnect.' : 'my.'}</span>
+    <div className={`${righteous.className} flex justify-center items-center`} data-testid="logo">
+      <span className={`${textColor} ${fontSize}`}>{type === 'full' ? 'mynnect.' : 'my.'}</span>
     </div>
   )
 }

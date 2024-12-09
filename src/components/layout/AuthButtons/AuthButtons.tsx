@@ -15,6 +15,7 @@ export default function AuthButtons() {
       const result = await loginWithProvider(provider)
       if (result) {
         const { currentUser } = auth
+        console.log(currentUser)
         const newUser = currentUser
           ? {
               name: currentUser.displayName,
@@ -24,7 +25,7 @@ export default function AuthButtons() {
             }
           : null
         mutate('user', newUser, false)
-        router.push('/')
+        router.push('/home')
       }
     } catch (e) {
       console.error(e)
