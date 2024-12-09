@@ -1,10 +1,26 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { RiHomeLine, RiNotification4Line, RiArrowRightUpLine, RiEarthFill } from 'react-icons/ri'
+import {
+  RiHomeLine,
+  RiNotification4Line,
+  RiArrowRightUpLine,
+  RiEarthFill,
+  RiAccountCircle2Line,
+} from 'react-icons/ri'
 import { FaSearch } from 'react-icons/fa'
+import AvatarImage from '@/components/common/Image/AvatarImage'
+import { useUser } from '@/hooks/useUser'
 
 export default function Navigation() {
+  const [isMounted, setIsMounted] = useState(false)
+  const { user } = useUser()
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   return (
     <nav className="fixed top-3 right-3 h-[97%] w-1/6 flex flex-col items-center gap-20 px-6 py-4 rounded-2xl border-4 border-lime-800 border-dashed font-bold text-md">
       <div className="flex justify-center items-center gap-2">
@@ -37,6 +53,22 @@ export default function Navigation() {
           <Link href="/notification" className="flex items-center gap-2">
             <RiNotification4Line className="text-2xl" />
             알림
+          </Link>
+        </li>
+        <li className="w-full">
+          <Link href={`/profile/${user?.uid}`} className="flex items-center gap-2">
+            {user && isMounted ? (
+              <AvatarImage
+                borderRadius="rounded-full"
+                src={user.photoURL}
+                alt={user.name}
+                width={22}
+                height={22}
+              />
+            ) : (
+              <RiAccountCircle2Line className="text-2xl" />
+            )}
+            프로필
           </Link>
         </li>
       </ul>
