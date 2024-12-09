@@ -1,6 +1,11 @@
 import { auth } from '@/config/firebaseConfig'
 
 export const fetchUser = async () => {
+  const storedUser = localStorage.getItem('user')
+  if (storedUser) {
+    return JSON.parse(storedUser)
+  }
+
   const { currentUser } = auth
   if (!currentUser) {
     return null
