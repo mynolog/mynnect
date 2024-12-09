@@ -10,13 +10,13 @@ const notoSansKR = Noto_Sans_KR({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ReduxProvider>
-      <html lang="ko">
-        <body className={`${notoSansKR.className} antialiased`}>
+    <html lang="ko">
+      <body className={`${notoSansKR.className} antialiased`}>
+        <ReduxProvider>
           {children}
           <Modal />
-        </body>
-      </html>
-    </ReduxProvider>
+        </ReduxProvider>
+      </body>
+    </html>
   )
 }
