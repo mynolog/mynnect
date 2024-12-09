@@ -18,6 +18,7 @@ const config: Config = {
         'steel-blue-600': '#3a4c6b',
         'off-white-500': '#f5f5f5',
         'dim-gray-600': '#444444',
+        'github-gray': '#333333',
       },
     },
   },
