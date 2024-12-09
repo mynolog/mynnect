@@ -5,10 +5,7 @@ const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-    '^.+\\.(ts|tsx)$': [
-      'ts-jest',
-      { tsconfig: '<rootDir>/tsconfig.test.json', babelConfig: true },
-    ],
+    '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.test.json', babelConfig: true }],
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
   moduleDirectories: ['node_modules', '<rootDir>/'],
