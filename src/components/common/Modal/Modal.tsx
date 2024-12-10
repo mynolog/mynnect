@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useSelector } from 'react-redux'
 import ModalContainer from './ModalContainer/ModalContainer'
@@ -9,8 +10,11 @@ import LoginWithEmail from './ModalBody/LoginWithEmail/LoginWithEmail'
 
 export default function Modal() {
   const { isOpen, type } = useSelector((state: RootState) => state.modal)
+  const [mounted, setMounted] = useState(false)
 
-  if (!isOpen) return null
+  useEffect(() => {
+    setMounted(true)
+  }, [mounted])
 
   const renderModalContent = () => {
     switch (type) {
@@ -22,6 +26,8 @@ export default function Modal() {
         return null
     }
   }
+
+  if (!isOpen || !mounted || !document?.body) return null
 
   return createPortal(<ModalContainer>{renderModalContent()}</ModalContainer>, document.body)
 }

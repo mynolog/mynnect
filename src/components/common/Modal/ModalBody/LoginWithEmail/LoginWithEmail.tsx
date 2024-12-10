@@ -1,8 +1,6 @@
 import BaseButton from '@/components/common/Button/BaseButton'
 import { loginWithEmailAndPassword } from '@/services/authServices'
 
-type LoginWithEmail = {}
-
 export default function LoginWithEmail() {
   // TODO: 실제 데이터 연동
   const email = ''

@@ -40,7 +40,7 @@ export default function ModalContainer({ children }: ModalContainer) {
           onClick={handleModalContentClick}
         >
           <div className="flex items-center justify-between px-3 w-full h-16 border-4 border-lime-green-900 rounded-xl">
-            <Logo type="full" fontSize="text-3xl" textColor="text-lime-green-500" />
+            <Logo type="short" fontSize="text-3xl" textColor="text-lime-green-500" />
             <h2 className="text-xl font-extrabold">{getModalTitle(type)}</h2>
             <BaseButton
               onClick={handleModalCloseButtonClick}
@@ -50,7 +50,7 @@ export default function ModalContainer({ children }: ModalContainer) {
               <FaXmark className="text-red-600 text-xl" />
             </BaseButton>
           </div>
-          <div className="flex items-center px-3 w-full h-full border-4 border-lime-green-900 rounded-xl">
+          <div className="flex items-center justify-center px-3 w-full h-full border-4 border-lime-green-900 rounded-xl">
             {children}
           </div>
         </div>
