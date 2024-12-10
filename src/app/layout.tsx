@@ -8,6 +8,10 @@ const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
 })
 
+export const metadata = {
+  title: '환영합니다:) | mynnect.',
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
