@@ -14,7 +14,7 @@ const config: Config = {
         'lime-green-500': '#4caf50',
         'lime-green-700': '#2e7d32',
         'lime-green-900': '#1b5e20',
-        'native-gray-600': '9e9e9e',
+        'native-gray-600': '#9e9e9e',
         'steel-blue-600': '#3a4c6b',
         'off-white-500': '#f5f5f5',
         'dim-gray-600': '#444444',

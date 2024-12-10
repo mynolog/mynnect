@@ -22,7 +22,7 @@ export default function Navigation() {
   }, [])
 
   return (
-    <nav className="fixed top-3 right-3 h-[97%] w-1/6 flex flex-col items-center gap-20 px-6 py-4 rounded-2xl border-4 border-lime-800 border-dashed font-bold text-md">
+    <nav className="fixed top-3 right-3 h-[97%] w-1/6 flex flex-col items-center gap-20 px-6 py-4 rounded-xl border-4 border-lime-green-300 hover:border-lime-green-900 transition-colors ease-in-out duration-300 font-bold text-md">
       <div className="flex justify-center items-center gap-2">
         <input
           type="text"

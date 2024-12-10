@@ -7,8 +7,8 @@ const righteous = Righteous({
 
 type LogoProps = {
   type: 'full' | 'short'
-  textColor?: 'text-off-white-500' | 'lime-green-300'
-  fontSize?: 'text-5xl' | 'text-7xl'
+  textColor?: 'text-off-white-500' | 'text-lime-green-500'
+  fontSize?: 'text-3xl' | 'text-5xl' | 'text-7xl'
 }
 
 export default function Logo({

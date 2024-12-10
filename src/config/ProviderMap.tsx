@@ -33,7 +33,7 @@ export const providerMap: ProviderMap = {
     icon: <FaEnvelope />,
     bgColor: 'bg-off-white-500',
     textColor: 'text-dim-gray-600',
-    label: '이메일/비밀번호로 로그인',
+    label: '이메일로 로그인',
     auth: null,
   },
 }

@@ -31,9 +31,9 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="fixed top-3 left-3 h-[97%] w-1/6 flex flex-col items-center gap-8 px-6 py-4 rounded-2xl border-4 border-lime-800 border-dashed font-bold text-md">
+    <div className="fixed top-3 left-3 h-[97%] w-1/6 flex flex-col items-center gap-8 px-6 py-4 rounded-xl border-4 border-lime-green-300 hover:border-lime-green-900 transition-colors ease-in-out duration-300 font-bold text-md">
       <div className="w-full h-20">
-        <Logo type="short" textColor="lime-green-300" fontSize="text-5xl" />
+        <Logo type="short" textColor="text-lime-green-500" fontSize="text-5xl" />
       </div>
       <div className="flex flex-col justify-center items-center gap-3">
         {isLoading ? (
@@ -61,7 +61,7 @@ export default function UserProfile() {
       <div className="absolute bottom-7">
         <BaseButton
           onClick={handleLogout}
-          bgColor="bg-lime-green-500"
+          bgColor="bg-lime-green-900"
           textColor="text-off-white-500"
         >
           로그아웃
