@@ -31,6 +31,7 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
   }
 }
 
+//TODO: 로컬 로그인 로직 완료하기
 export const loginWithEmailAndPassword = async (email: string, password: string) => {
   try {
     const result = await signInWithEmailAndPassword(auth, email, password)
@@ -41,6 +42,7 @@ export const loginWithEmailAndPassword = async (email: string, password: string)
   }
 }
 
+//TODO: 로컬 회원가입 로직 완료하기
 export const signupWithEmailAndPassword = async (
   userEmail: string,
   password: string,
