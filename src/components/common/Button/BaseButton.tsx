@@ -1,7 +1,12 @@
 export type BaseButtonProps = {
   children: React.ReactNode
   onClick?: () => void
-  bgColor?: 'bg-github-gray' | 'bg-off-white-500' | 'bg-lime-green-500' | 'bg-lime-green-900'
+  bgColor?:
+    | 'bg-github-gray'
+    | 'bg-off-white-500'
+    | 'bg-lime-green-500'
+    | 'bg-lime-green-700'
+    | 'bg-lime-green-900'
   textColor?: 'text-dim-gray-600' | 'text-off-white-500'
   width?: 'w-10' | 'w-28' | 'w-64'
   height?: 'h-10' | 'h-12'
