@@ -46,13 +46,13 @@ export const loginWithEmailAndPassword = async (email: string, password: string)
 export const signupWithEmailAndPassword = async (
   userEmail: string,
   password: string,
-  name: string,
+  userName: string,
 ) => {
   try {
     const result = await createUserWithEmailAndPassword(auth, userEmail, password)
 
     const { user } = result
-    await updateProfile(user, { displayName: name })
+    await updateProfile(user, { displayName: userName })
 
     console.log(user.displayName)
 
