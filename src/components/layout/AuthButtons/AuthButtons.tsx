@@ -9,6 +9,7 @@ import { loginWithProvider } from '@/services/authServices'
 import { providerMap } from '../../../config/ProviderMap'
 import BaseButton from '@/components/common/Button/BaseButton'
 import { openModal } from '@/store/modal/modalSlice'
+import { FaUserPlus } from 'react-icons/fa'
 
 export default function AuthButtons() {
   const router = useRouter()
@@ -64,7 +65,8 @@ export default function AuthButtons() {
       <span className="text-off-white-500 font-extrabold">OR</span>
       <div>
         <BaseButton onClick={handleSignupClick} width="w-64" height="h-12">
-          회원가입
+          <FaUserPlus />
+          이메일로 가입하기
         </BaseButton>
       </div>
     </div>

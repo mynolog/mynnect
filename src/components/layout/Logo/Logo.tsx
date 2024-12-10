@@ -1,3 +1,6 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { Righteous } from 'next/font/google'
 
 const righteous = Righteous({
@@ -16,9 +19,22 @@ export default function Logo({
   textColor = 'text-off-white-500',
   fontSize = 'text-7xl',
 }: LogoProps) {
+  const router = useRouter()
+
+  const navigateToHome = () => {
+    router.push('/home')
+  }
   return (
-    <div className={`${righteous.className} flex justify-center items-center`} data-testid="logo">
-      <span className={`${textColor} ${fontSize}`}>{type === 'full' ? 'mynnect.' : 'my.'}</span>
+    <div
+      className={`${righteous.className} flex justify-center items-center`}
+      onClick={navigateToHome}
+      data-testid="logo"
+    >
+      <span
+        className={`${textColor} ${fontSize} hover:text-lime-green-900 transition-colors duration-300 ease-linear hover:cursor-pointer`}
+      >
+        {type === 'full' ? 'mynnect.' : 'my.'}
+      </span>
     </div>
   )
 }
