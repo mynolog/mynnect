@@ -15,4 +15,10 @@ describe('Logo 컴포넌트 유닛 테스트', () => {
     expect(logoElement).toBeInTheDocument()
     expect(logoElement).toHaveTextContent('my.')
   })
+
+  test('Logo 컴포넌트에 Righteous 폰트 클래스가 적용되어야 한다.', () => {
+    render(<Logo type="full" />)
+    const logoElement = screen.getByTestId('logo')
+    expect(logoElement.classList).toContain('righteous')
+  })
 })

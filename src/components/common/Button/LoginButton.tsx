@@ -3,7 +3,7 @@ import BaseButton from './BaseButton'
 import { providerMap } from '@/config/ProviderMap'
 
 type LoginButtonProps = {
-  provider: 'google' | 'github'
+  provider: 'google' | 'github' | 'local'
 } & BaseButtonProps
 
 export default function LoginButton({ provider, onClick = () => {} }: LoginButtonProps) {
@@ -19,7 +19,6 @@ export default function LoginButton({ provider, onClick = () => {} }: LoginButto
     >
       {icon}
       {label}
-      로그인
     </BaseButton>
   )
 }

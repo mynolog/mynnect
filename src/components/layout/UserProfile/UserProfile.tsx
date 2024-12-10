@@ -8,6 +8,7 @@ import { logout } from '@/services/authServices'
 import { mutate } from 'swr'
 import { useRouter } from 'next/navigation'
 
+//TODO: photoURL = null 일 때 기본 프로필 이미지 불러오도록 수정 필요
 export default function UserProfile() {
   const { user, isError, isLoading } = useUser()
   const router = useRouter()
