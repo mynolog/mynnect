@@ -1,11 +1,4 @@
-import Link from 'next/link'
-import {
-  RiHomeLine,
-  RiNotification4Line,
-  RiArrowRightUpLine,
-  RiEarthFill,
-  RiAccountCircle2Line,
-} from 'react-icons/ri'
+import { RiHomeLine, RiNotification4Line, RiArrowRightUpLine, RiEarthFill } from 'react-icons/ri'
 
 type NavigationItem = {
   id: string
