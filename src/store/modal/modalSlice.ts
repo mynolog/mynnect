@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type ModalType = 'login' | 'signup' | null
+type ModalType = 'signup' | 'loginWithEmail' | null
 
 type ModalState = {
   isOpen: boolean

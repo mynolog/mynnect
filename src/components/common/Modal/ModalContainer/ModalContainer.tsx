@@ -2,7 +2,11 @@ import type { MouseEvent } from 'react'
 import { useDispatch } from 'react-redux'
 import { closeModal } from '@/store/modal/modalSlice'
 
-export default function ModalContainer() {
+type ModalContainer = {
+  children: React.ReactNode
+}
+
+export default function ModalContainer({ children }: ModalContainer) {
   const dispatch = useDispatch()
   const handleModalBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
@@ -22,7 +26,7 @@ export default function ModalContainer() {
           className={`text-dim-gray-600 font-bold bg-white rounded-xl shadow-md p-3 max-w-[670px] w-full h-4/6 flex flex-col justify-center`}
           onClick={handleModalContentClick}
         >
-          모달창입니다.
+          {children}
         </div>
       </div>
     </div>
