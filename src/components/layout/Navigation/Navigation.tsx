@@ -8,7 +8,7 @@ import { RiAccountCircle2Line } from 'react-icons/ri'
 import { LuLogOut } from 'react-icons/lu'
 import AvatarImage from '@/components/common/Image/AvatarImage'
 import { useUser } from '@/hooks/useUser'
-import { navigationList } from '@/config/NavigationList'
+import { navigationList } from '@/config/navigationList'
 import BaseButton from '@/components/common/Button/BaseButton'
 import { logout } from '@/services/authServices'
 

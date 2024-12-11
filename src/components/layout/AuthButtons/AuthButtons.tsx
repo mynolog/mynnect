@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import LoginButton from '@/components/common/Button/LoginButton'
 import { loginWithProvider } from '@/services/authServices'
-import { providerMap } from '../../../config/ProviderMap'
 import BaseButton from '@/components/common/Button/BaseButton'
-import { closeModal, openModal } from '@/store/modal/modalSlice'
+import { providerMap } from '@/config/providerMap'
+import { openModal } from '@/store/modal/modalSlice'
 import { FaUserPlus } from 'react-icons/fa'
 
 export default function AuthButtons() {

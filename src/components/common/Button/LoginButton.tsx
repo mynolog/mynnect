@@ -1,6 +1,6 @@
 import { type BaseButtonProps } from './BaseButton'
+import { providerMap } from '@/config/providerMap'
 import BaseButton from './BaseButton'
-import { providerMap } from '@/config/ProviderMap'
 
 type LoginButtonProps = {
   provider: 'google' | 'github' | 'local'

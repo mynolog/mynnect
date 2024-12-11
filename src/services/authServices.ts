@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
-import { providerMap } from '@/config/ProviderMap'
+import { providerMap } from '@/config/providerMap'
 
 export const loginWithProvider = async (provider: 'google' | 'github') => {
   if (providerMap[provider].auth === null) {
