@@ -3,7 +3,9 @@
 import BaseButton from '@/components/common/Button/BaseButton'
 import { auth } from '@/config/firebaseConfig'
 import { loginWithEmailAndPassword } from '@/services/authServices'
+import { closeModal } from '@/store/modal/modalSlice'
 import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
 import { mutate } from 'swr'
 
 export default function LoginWithEmail() {
@@ -12,6 +14,7 @@ export default function LoginWithEmail() {
   const password = '1234567890'
 
   const router = useRouter()
+  const dispatch = useDispatch()
 
   // TODO: 로컬 로그인 버튼 클릭 이후 로직 작성 완료
   const handleSubmitLogin = async () => {
@@ -26,8 +29,8 @@ export default function LoginWithEmail() {
             uid: currentUser.uid,
           }
         : null
-      console.log(newUser)
       mutate('user', newUser, false)
+      dispatch(closeModal())
       router.push('/home')
     }
   }
