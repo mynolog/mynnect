@@ -23,7 +23,9 @@ export default function Logo({
 
   return (
     <div className={`${righteous.className} flex justify-center items-center`} data-testid="logo">
-      <span className={`${textColor} ${fontSize} hover:cursor-pointer`}>
+      <span
+        className={`${textColor} ${fontSize} hover:cursor-pointer opacity-85 scale-100 hover:opacity-100 hover:scale-105 transition-all duration-200 ease-linear`}
+      >
         {type === 'full' ? 'mynnect.' : 'my.'}
       </span>
     </div>

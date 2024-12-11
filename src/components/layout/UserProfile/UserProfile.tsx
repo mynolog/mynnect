@@ -1,11 +1,17 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import Logo from '../Logo/Logo'
 import AvatarImage from '@/components/common/Image/AvatarImage'
 
 export default function UserProfile() {
   const { user, isError, isLoading } = useUser()
+  const router = useRouter()
+
+  const moveToHome = () => {
+    router.push('/home')
+  }
 
   if (isError) {
     return <div>Error loading user data</div>
@@ -13,7 +19,7 @@ export default function UserProfile() {
 
   return (
     <div className="sticky top-[12px] max-h-[96vh] w-1/6 mt-3 flex flex-col items-center gap-8 px-6 py-4 font-bold text-md">
-      <div className="w-full h-20">
+      <div className="w-full h-20" onClick={moveToHome}>
         <Logo type="short" textColor="text-lime-green-500" fontSize="text-5xl" />
       </div>
       <div className="flex flex-col justify-center items-center gap-3">
