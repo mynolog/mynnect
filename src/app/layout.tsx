@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKR.className} antialiased`}>
+      <body className={`${notoSansKR.className} antialiased m-auto max-w-6xl`}>
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
