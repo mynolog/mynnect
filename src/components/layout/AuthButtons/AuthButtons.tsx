@@ -47,12 +47,7 @@ export default function AuthButtons() {
         <LoginButton provider="google" onClick={() => handleLoginWithProvider('google')}>
           <span>{providerMap['google'].label}</span>
         </LoginButton>
-        <LoginButton
-          provider="github"
-          onClick={() => handleLoginWithProvider('github')}
-          bgColor="bg-github-gray"
-          textColor="text-off-white-500"
-        >
+        <LoginButton provider="github" onClick={() => handleLoginWithProvider('github')}>
           <span>{providerMap['github'].label}</span>
         </LoginButton>
         <LoginButton provider="local" onClick={moveToLoginWithEmail}>
@@ -61,7 +56,13 @@ export default function AuthButtons() {
       </div>
       <span className="text-lime-green-900 font-extrabold">OR</span>
       <div>
-        <BaseButton onClick={moveToSignupPage} width="w-64" height="h-12">
+        <BaseButton
+          onClick={moveToSignupPage}
+          width="w-64"
+          height="h-12"
+          bgColor="bg-lime-green-900"
+          textColor="text-off-white-500"
+        >
           <FaUserPlus />
           이메일로 가입하기
         </BaseButton>

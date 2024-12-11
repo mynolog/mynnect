@@ -25,7 +25,7 @@ export default function BaseButton({
 }: BaseButtonProps) {
   return (
     <button
-      className={`${disabled ? 'bg-gray-400' : bgColor} ${textColor} ${width} ${height} rounded-xl flex justify-center items-center gap-2 font-bold opacity-85 hover:opacity-100 transition-opacity ease-in-out duration-300`}
+      className={`${disabled ? 'bg-gray-400' : bgColor} ${textColor} ${width} ${height} rounded-xl flex justify-center items-center gap-2 font-bold opacity-85 transition-all ease-in-out duration-300 hover:opacity-100 hover:scale-105`}
       onClick={onClick}
       disabled={disabled}
     >
