@@ -3,17 +3,14 @@
 import { mutate } from 'swr'
 import { auth } from '@/config/firebaseConfig'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from 'react-redux'
 import LoginButton from '@/components/common/Button/LoginButton'
 import { loginWithProvider } from '@/services/authServices'
 import BaseButton from '@/components/common/Button/BaseButton'
 import { providerMap } from '@/config/providerMap'
-import { openModal } from '@/store/modal/modalSlice'
 import { FaUserPlus } from 'react-icons/fa'
 
 export default function AuthButtons() {
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const handleLoginWithProvider = async (provider: 'google' | 'github') => {
     try {
@@ -36,12 +33,12 @@ export default function AuthButtons() {
     }
   }
 
-  const handleSignupClick = () => {
-    dispatch(openModal('signup'))
+  const moveToSignupPage = () => {
+    router.push('/signup')
   }
 
-  const handleLoginWithEmailClick = () => {
-    dispatch(openModal('loginWithEmail'))
+  const moveToLoginWithEmail = () => {
+    router.push('/login')
   }
 
   return (
@@ -58,13 +55,13 @@ export default function AuthButtons() {
         >
           <span>{providerMap['github'].label}</span>
         </LoginButton>
-        <LoginButton provider="local" onClick={handleLoginWithEmailClick}>
+        <LoginButton provider="local" onClick={moveToLoginWithEmail}>
           <span>{providerMap['local'].label}</span>
         </LoginButton>
       </div>
-      <span className="text-off-white-500 font-extrabold">OR</span>
+      <span className="text-lime-green-900 font-extrabold">OR</span>
       <div>
-        <BaseButton onClick={handleSignupClick} width="w-64" height="h-12">
+        <BaseButton onClick={moveToSignupPage} width="w-64" height="h-12">
           <FaUserPlus />
           이메일로 가입하기
         </BaseButton>

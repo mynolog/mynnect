@@ -10,7 +10,7 @@ const righteous = Righteous({
 
 type LogoProps = {
   type: 'full' | 'short'
-  textColor?: 'text-off-white-500' | 'text-lime-green-500'
+  textColor?: 'text-off-white-500' | 'text-lime-green-500' | 'text-lime-green-900'
   fontSize?: 'text-3xl' | 'text-5xl' | 'text-7xl'
 }
 
@@ -21,18 +21,9 @@ export default function Logo({
 }: LogoProps) {
   const router = useRouter()
 
-  const navigateToHome = () => {
-    router.push('/home')
-  }
   return (
-    <div
-      className={`${righteous.className} flex justify-center items-center`}
-      onClick={navigateToHome}
-      data-testid="logo"
-    >
-      <span
-        className={`${textColor} ${fontSize} hover:text-lime-green-900 transition-colors duration-300 ease-linear hover:cursor-pointer`}
-      >
+    <div className={`${righteous.className} flex justify-center items-center`} data-testid="logo">
+      <span className={`${textColor} ${fontSize} hover:cursor-pointer`}>
         {type === 'full' ? 'mynnect.' : 'my.'}
       </span>
     </div>

@@ -1,12 +1,15 @@
 'use client'
 
-import { type FormEvent } from 'react'
+import { type FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { signupWithEmailAndPassword } from '@/services/authServices'
 import { useForm } from '@/hooks/useForm'
 import BaseButton from '@/components/common/Button/BaseButton'
 import BaseInput from '@/components/common/Input/BaseInput'
+import Spinner from '@/components/common/Spinner/Spinner'
 
 export default function Signup() {
+  const [isLoading, setIsLoading] = useState(false)
   const { form, handleFormChange } = useForm({
     email: '',
     password: '',
@@ -15,28 +18,41 @@ export default function Signup() {
   })
 
   const { email, password, passwordConfirm, userName } = form
+  const router = useRouter()
 
   // TODO: 회원가입 버튼 클릭 이후 로직 작성 완료하기
   const handleSignupSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    //TODO: 비밀번호 불일치 에러 핸들링
+    //TODO: 공백 입력 시 에러 핸들링 UI 구현
+    if (
+      email.trim() === '' ||
+      password.trim() === '' ||
+      passwordConfirm.trim() === '' ||
+      userName.trim() === ''
+    ) {
+      return
+    }
+    //TODO: 비밀번호 불일치 에러 핸들링 UI 구현
     if (password !== passwordConfirm) {
       return
     }
-
+    setIsLoading(true)
     try {
       const result = await signupWithEmailAndPassword(email, password, userName)
-      console.log('회원가입', result)
+      if (result) {
+        router.push('/login')
+      }
     } catch (e) {
       console.error(e)
       throw e
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <form
-      className="w-1/2 h-full flex flex-col justify-center  items-center gap-5"
+      className="w-1/2 flex flex-col justify-center items-center gap-5"
       onSubmit={handleSignupSubmit}
     >
       <BaseInput
@@ -68,8 +84,8 @@ export default function Signup() {
         onChange={handleFormChange}
       />
 
-      <BaseButton bgColor="bg-lime-green-700" textColor="text-off-white-500">
-        회원가입
+      <BaseButton bgColor="bg-lime-green-900" textColor="text-off-white-500" disabled={isLoading}>
+        {isLoading ? <Spinner /> : '가입하기'}
       </BaseButton>
     </form>
   )
