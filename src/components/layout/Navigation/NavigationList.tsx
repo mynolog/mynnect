@@ -73,7 +73,7 @@ export default function NavigationList() {
           )
         )}
       </ul>
-      <div className="absolute bottom-7">
+      <div className="absolute bottom-10">
         <LogoutButton />
       </div>
     </>
