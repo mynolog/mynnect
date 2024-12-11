@@ -7,9 +7,11 @@ export type BaseButtonProps = {
     | 'bg-lime-green-500'
     | 'bg-lime-green-700'
     | 'bg-lime-green-900'
+    | 'bg-native-gray-600'
   textColor?: 'text-dim-gray-600' | 'text-off-white-500'
   width?: 'w-10' | 'w-28' | 'w-44' | 'w-64'
   height?: 'h-10' | 'h-12'
+  disabled?: boolean
 }
 
 export default function BaseButton({
@@ -19,11 +21,13 @@ export default function BaseButton({
   textColor = 'text-dim-gray-600',
   width = 'w-28',
   height = 'h-10',
+  disabled = false,
 }: BaseButtonProps) {
   return (
     <button
-      className={`${bgColor} ${textColor} ${width} ${height} rounded-xl flex justify-center items-center gap-2 font-bold opacity-85 hover:opacity-100 transition-opacity ease-in-out duration-300`}
+      className={`${disabled ? 'bg-gray-400' : bgColor} ${textColor} ${width} ${height} rounded-xl flex justify-center items-center gap-2 font-bold opacity-85 hover:opacity-100 transition-opacity ease-in-out duration-300`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
