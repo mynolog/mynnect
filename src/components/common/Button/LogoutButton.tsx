@@ -1,7 +1,6 @@
 'use client'
 
 import { mutate } from 'swr'
-import { MdLogout } from 'react-icons/md'
 import { logout } from '@/services/authServices'
 import BaseButton from './BaseButton'
 import { useRouter } from 'next/navigation'
@@ -27,11 +26,10 @@ export default function LogoutButton() {
       onClick={handleLogout}
       textColor="text-off-white-500"
       width="w-28"
-      height="h-12"
+      height="h-8"
       bgColor="bg-github-gray"
     >
       <span className="text-sm">로그아웃</span>
-      <MdLogout />
     </BaseButton>
   )
 }

@@ -25,7 +25,7 @@ export default function TweetPost() {
   const handleTweetSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (text.trim() === '') {
-      setError('내용을 입력해주세요.')
+      setError('무엇을 공유하고 싶으신가요? 트윗 내용을 작성해 주세요.')
       return
     }
     try {
@@ -73,7 +73,7 @@ export default function TweetPost() {
           {error && <span className="pl-4 text-xs text-red-600">{error}</span>}
           <BaseButton
             height="h-8"
-            bgColor="bg-github-gray"
+            bgColor="bg-lime-green-900"
             textColor="text-off-white-500"
             disabled={isLoading}
           >
