@@ -28,7 +28,7 @@ export default function LogoutButton() {
       textColor="text-off-white-500"
       width="w-28"
       height="h-12"
-      bgColor="bg-native-gray-600"
+      bgColor="bg-github-gray"
     >
       <span className="text-sm">로그아웃</span>
       <MdLogout />

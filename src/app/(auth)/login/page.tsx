@@ -2,7 +2,6 @@
 
 import { type FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from 'react-redux'
 import { mutate } from 'swr'
 import BaseButton from '@/components/common/Button/BaseButton'
 import { auth } from '@/config/firebaseConfig'

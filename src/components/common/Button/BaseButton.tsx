@@ -10,7 +10,7 @@ export type BaseButtonProps = {
     | 'bg-native-gray-600'
   textColor?: 'text-dim-gray-600' | 'text-off-white-500'
   width?: 'w-10' | 'w-28' | 'w-44' | 'w-64'
-  height?: 'h-10' | 'h-12'
+  height?: 'h-8' | 'h-10' | 'h-12'
   disabled?: boolean
 }
 
