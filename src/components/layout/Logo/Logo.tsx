@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { Righteous } from 'next/font/google'
 
 const righteous = Righteous({
@@ -19,8 +18,6 @@ export default function Logo({
   textColor = 'text-off-white-500',
   fontSize = 'text-7xl',
 }: LogoProps) {
-  const router = useRouter()
-
   return (
     <div className={`${righteous.className} flex justify-center items-center`} data-testid="logo">
       <span

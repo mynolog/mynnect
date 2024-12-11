@@ -20,6 +20,18 @@ const config: Config = {
         'dim-gray-600': '#444444',
         'github-gray': '#333333',
       },
+      keyframes: {
+        shake: {
+          '0%': { transform: 'translateX(0)' },
+          '25%': { transform: 'translateX(-5px)' },
+          '50%': { transform: 'translateX(5px)' },
+          '75%': { transform: 'translateX(-5px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        shake: 'shake 0.3s ease-in-out',
+      },
     },
   },
   plugins: [],

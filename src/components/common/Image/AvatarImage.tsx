@@ -22,5 +22,7 @@ export default function AvatarImage({
   if (!src) {
     return <DefaultAvatarImage width={width} height={height} fontSize={fontSize} />
   }
-  return <Image src={src} alt={alt} width={width} height={height} className={borderRadius} />
+  return (
+    <Image src={src} alt={alt} width={width} height={height} className={borderRadius} priority />
+  )
 }
