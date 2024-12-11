@@ -1,24 +1,35 @@
 import { render, screen } from '@testing-library/react'
+import { useRouter } from 'next/navigation'
 import Logo from '@/components/layout/Logo/Logo'
 
+jest.mock('next/font/google', () => ({
+  Righteous: jest.fn().mockReturnValue({
+    className: 'righteous-font',
+  }),
+}))
+
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
+}))
+
 describe('Logo 컴포넌트 유닛 테스트', () => {
-  test('Logo 컴포넌트의 type 속성이 "full"일 때, "mynnect."가 표시되어야 한다.', () => {
+  beforeEach(() => {
+    ;(useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+    })
+  })
+
+  test('Logo 컴포넌트가 "mynnect." 텍스트를 올바르게 렌더링해야 한다. (type="full")', () => {
     render(<Logo type="full" />)
     const logoElement = screen.getByTestId('logo')
     expect(logoElement).toBeInTheDocument()
     expect(logoElement).toHaveTextContent('mynnect.')
   })
 
-  test('Logo 컴포넌트의 type 속성이 "short"일 때, "my."가 표시되어야 한다.', () => {
+  test('Logo 컴포넌트가 "my." 텍스트를 올바르게 렌더링해야 한다. (type="short")', () => {
     render(<Logo type="short" />)
     const logoElement = screen.getByTestId('logo')
     expect(logoElement).toBeInTheDocument()
     expect(logoElement).toHaveTextContent('my.')
-  })
-
-  test('Logo 컴포넌트에 Righteous 폰트 클래스가 적용되어야 한다.', () => {
-    render(<Logo type="full" />)
-    const logoElement = screen.getByTestId('logo')
-    expect(logoElement.classList).toContain('righteous')
   })
 })

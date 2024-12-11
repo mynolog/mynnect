@@ -3,28 +3,9 @@
 import { useUser } from '@/hooks/useUser'
 import Logo from '../Logo/Logo'
 import AvatarImage from '@/components/common/Image/AvatarImage'
-import BaseButton from '@/components/common/Button/BaseButton'
-import { logout } from '@/services/authServices'
-import { mutate } from 'swr'
-import { useRouter } from 'next/navigation'
 
-//TODO: photoURL = null 일 때 기본 프로필 이미지 불러오도록 수정 필요
 export default function UserProfile() {
   const { user, isError, isLoading } = useUser()
-  const router = useRouter()
-
-  const handleLogout = async () => {
-    try {
-      const result = await logout()
-      if (result) {
-        mutate('user', null, false)
-        localStorage.removeItem('user')
-        router.push('/')
-      }
-    } catch (e) {
-      console.error(e)
-    }
-  }
 
   if (isError) {
     return <div>Error loading user data</div>
@@ -46,26 +27,18 @@ export default function UserProfile() {
           user && (
             <>
               <AvatarImage
-                src={user.photoURL || ''}
-                alt={user.name ?? 'Anonymous'}
+                src={user.photoURL}
+                alt={user.name || 'User Avatar'}
                 width={100}
                 height={100}
                 borderRadius="rounded-full"
               />
-              <span className="text-2xl font-extrabold">{user.name}</span>
-              <span className="text-sm">{user.email}</span>
+
+              <span className="text-2xl font-extrabold">{user.name || 'Anonymous'}</span>
+              <span className="text-sm">{user.email || 'No email provided'}</span>
             </>
           )
         )}
-      </div>
-      <div className="absolute bottom-7">
-        <BaseButton
-          onClick={handleLogout}
-          bgColor="bg-lime-green-900"
-          textColor="text-off-white-500"
-        >
-          로그아웃
-        </BaseButton>
       </div>
     </div>
   )
