@@ -13,7 +13,7 @@ export default function DefaultAvatarImage({
   return (
     <div
       style={{ width: `${width}px`, height: `${height}px` }}
-      className={`rounded-full bg-gray-400 flex justify-center items-center overflow-hidden mr-2`}
+      className={`rounded-full bg-native-gray-600 flex justify-center items-center overflow-hidden mr-2`}
     >
       <FaUserAlt className={`${fontSize} text-off-white-500`} />
     </div>
