@@ -104,7 +104,7 @@ export default function TweetItem({ tweet }: TweetItemProps) {
       <div
         className={`flex flex-col justify-between gap-4 w-full h-auto outline-none rounded-2xl px-3 py-2 bg-white `}
       >
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-3">
           <textarea
             ref={textareaRef}
             maxLength={150}
@@ -122,26 +122,26 @@ export default function TweetItem({ tweet }: TweetItemProps) {
                     <Spinner />
                   ) : (
                     <MdCheck
-                      className="text-2xl cursor-pointer text-lime-green-700"
+                      className="text-2xl cursor-pointer text-lime-green-700 opacity-70 hover:opacity-100 transition-opacity duration-200 ease-linear"
                       onClick={handleUpdateTweetSubmitClick}
                     />
                   )}
                   <MdClose
-                    className="text-2xl cursor-pointer text-red-700"
+                    className="text-2xl cursor-pointer text-red-700 opacity-70 hover:opacity-100 transition-opacity duration-200 ease-linear"
                     onClick={handleUpdateTweetCancelClick}
                   />
                 </>
               ) : (
                 <>
                   <MdOutlineModeEditOutline
-                    className="text-2xl cursor-pointer text-steel-blue-600"
+                    className="text-2xl cursor-pointer text-steel-blue-600 opacity-70 hover:opacity-100 transition-opacity duration-200 ease-linear"
                     onClick={handleUpdateTweetClick}
                   />
                   {isLoading ? (
                     <Spinner />
                   ) : (
                     <MdOutlineDeleteForever
-                      className="text-2xl cursor-pointer text-red-700"
+                      className="text-2xl cursor-pointer text-red-700 opacity-70 hover:opacity-100 transition-opacity duration-200 ease-linear"
                       onClick={() => handleDeleteTweetClick(tweet.id)}
                     />
                   )}
@@ -150,9 +150,9 @@ export default function TweetItem({ tweet }: TweetItemProps) {
             </div>
           )}
         </div>
-        <div className="flex justify-end gap-3">
-          <span className="text-github-gray text-xs">{tweet.name}</span>
-          <div className="flex flex-col items-end justify-center gap-1">
+        <div className="flex justify-end items-start gap-3">
+          <span className="text-github-gray text-xs font-extrabold">{tweet.name}</span>
+          <div className="flex flex-col items-end justify-center">
             <span className="text-native-gray-600 text-xs">
               {getTimeDifference(tweet.createdAt)}
             </span>
