@@ -1,0 +1,45 @@
+import type { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import AvatarImage from '../Image/AvatarImage'
+import { useUser } from '@/hooks/useUser'
+
+type TweetBaseProps = {
+  error: string
+  setError: Dispatch<SetStateAction<string>>
+  text: string
+  setText: Dispatch<SetStateAction<string>>
+}
+
+export default function TweetBase({ error, setError, text, setText }: TweetBaseProps) {
+  const { user } = useUser()
+
+  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setError('')
+    const { value } = e.target
+    setText(value)
+    const textarea = e.target
+    textarea.style.height = `${textarea.scrollHeight}px`
+  }
+
+  return (
+    <>
+      <div className="absolute top-0 left-0 flex">
+        {user && (
+          <AvatarImage
+            src={user.photoURL}
+            alt={user.name}
+            width={50}
+            height={50}
+            borderRadius="rounded-full"
+          />
+        )}
+      </div>
+      <textarea
+        className={`w-full h-auto resize-none outline-none rounded-2xl px-3 py-2 ${error ? 'border-red-600 border-2 animate-shake' : ''}`}
+        maxLength={180}
+        value={text}
+        onChange={handleInputChange}
+        placeholder="지금 어떤 생각하시나요?"
+      />
+    </>
+  )
+}
