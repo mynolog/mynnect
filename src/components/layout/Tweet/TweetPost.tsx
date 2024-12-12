@@ -6,7 +6,7 @@ import BaseButton from '../../common/Button/BaseButton'
 import { createTweet } from '@/services/tweetServices'
 import { Tweet } from '@/types/tweetTypes'
 import Spinner from '../../common/Spinner/Spinner'
-import TweetBase from '../../common/TweetBase/TweetBase'
+import TweetBase from '../../common/Tweet/TweetBase'
 
 export default function TweetPost() {
   const [text, setText] = useState('')
