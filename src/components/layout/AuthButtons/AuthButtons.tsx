@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { mutate } from 'swr'
 import { auth } from '@/config/firebaseConfig'
 import { useRouter } from 'next/navigation'
@@ -8,11 +9,14 @@ import { loginWithProvider } from '@/services/authServices'
 import BaseButton from '@/components/common/Button/BaseButton'
 import { providerMap } from '@/config/providerMap'
 import { FaUserPlus } from 'react-icons/fa'
+import Spinner from '@/components/common/Spinner/Spinner'
 
 export default function AuthButtons() {
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleLoginWithProvider = async (provider: 'google' | 'github') => {
+    setIsLoading(true)
     try {
       const result = await loginWithProvider(provider)
       if (result) {
@@ -30,6 +34,8 @@ export default function AuthButtons() {
       }
     } catch (e) {
       console.error(e)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -42,31 +48,39 @@ export default function AuthButtons() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5">
-      <div className="flex flex-col gap-3">
-        <LoginButton provider="google" onClick={() => handleLoginWithProvider('google')}>
-          <span>{providerMap['google'].label}</span>
-        </LoginButton>
-        <LoginButton provider="github" onClick={() => handleLoginWithProvider('github')}>
-          <span>{providerMap['github'].label}</span>
-        </LoginButton>
-        <LoginButton provider="local" onClick={moveToLoginWithEmail}>
-          <span>{providerMap['local'].label}</span>
-        </LoginButton>
-      </div>
-      <span className="text-lime-green-900 font-extrabold">OR</span>
-      <div>
-        <BaseButton
-          onClick={moveToSignupPage}
-          width="w-64"
-          height="h-12"
-          bgColor="bg-lime-green-900"
-          textColor="text-off-white-500"
-        >
-          <FaUserPlus />
-          이메일로 가입하기
-        </BaseButton>
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <div className="w-full h-full flex justify-center items-center">
+          <Spinner />
+        </div>
+      ) : (
+        <div className="flex flex-col justify-center items-center gap-5">
+          <div className="flex flex-col gap-3">
+            <LoginButton provider="google" onClick={() => handleLoginWithProvider('google')}>
+              <span>{providerMap['google'].label}</span>
+            </LoginButton>
+            <LoginButton provider="github" onClick={() => handleLoginWithProvider('github')}>
+              <span>{providerMap['github'].label}</span>
+            </LoginButton>
+            <LoginButton provider="local" onClick={moveToLoginWithEmail}>
+              <span>{providerMap['local'].label}</span>
+            </LoginButton>
+          </div>
+          <span className="text-lime-green-900 font-extrabold">OR</span>
+          <div>
+            <BaseButton
+              onClick={moveToSignupPage}
+              width="w-64"
+              height="h-12"
+              bgColor="bg-lime-green-900"
+              textColor="text-off-white-500"
+            >
+              <FaUserPlus />
+              이메일로 가입하기
+            </BaseButton>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
