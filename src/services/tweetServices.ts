@@ -1,13 +1,20 @@
 import { type Tweet } from '@/types/tweetTypes'
 import { db } from '@/config/firebaseConfig'
-import { addDoc, collection } from 'firebase/firestore'
+import { collection, doc, setDoc } from 'firebase/firestore'
 
 export const createTweet = async (tweet: Tweet) => {
   try {
-    const tweetRef = collection(db, 'tweets')
-    await addDoc(tweetRef, tweet)
+    const collectionRef = collection(db, 'tweets')
+    const newDocRef = doc(collectionRef)
+    await setDoc(newDocRef, {
+      ...tweet,
+      id: newDocRef.id,
+    })
+    return true
   } catch (e) {
     console.error(e)
-    throw e
   }
+  return false
 }
+
+export const getAllTweets = async () => {}
