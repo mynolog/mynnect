@@ -8,6 +8,7 @@ import {
 } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { providersMap } from '@/config/providersMap'
+import { SignupUserCredential } from '@/types/userTypes'
 
 export const loginWithProvider = async (provider: 'google' | 'github') => {
   if (providersMap[provider].auth === null) {
@@ -47,27 +48,26 @@ export const loginWithEmailAndPassword = async (email: string, password: string)
 }
 
 //TODO: 로컬 회원가입 로직 완료하기
-export const signupWithEmailAndPassword = async (
-  userEmail: string,
-  password: string,
-  userName: string,
-) => {
+export const signupWithEmailAndPassword = async ({
+  email,
+  password,
+  displayName,
+  nickName,
+}: SignupUserCredential) => {
   try {
-    const result = await createUserWithEmailAndPassword(auth, userEmail, password)
+    const result = await createUserWithEmailAndPassword(auth, email, password)
 
     const { user } = result
-    await updateProfile(user, { displayName: userName })
+    await updateProfile(user, { displayName })
 
-    console.log(user.displayName)
-
-    const { uid, email, displayName, photoURL } = result.user
     const newUser = {
-      uid,
-      email,
-      displayName,
-      photoURL,
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      nickName,
     }
-    await setDoc(doc(db, 'users', uid), newUser)
+    await setDoc(doc(db, 'users', user.uid), newUser)
     return newUser
   } catch (e) {
     console.error(e)

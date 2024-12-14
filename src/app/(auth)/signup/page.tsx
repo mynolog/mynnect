@@ -7,17 +7,19 @@ import { useForm } from '@/hooks/useForm'
 import BaseButton from '@/components/common/Button/BaseButton'
 import BaseInput from '@/components/common/Input/BaseInput'
 import Spinner from '@/components/common/Spinner/Spinner'
+import { SignupUserCredential } from '@/types/userTypes'
 
 export default function Signup() {
   const [isLoading, setIsLoading] = useState(false)
   const { form, handleFormChange } = useForm({
     email: '',
+    nickName: '',
     password: '',
     passwordConfirm: '',
-    userName: '',
+    displayName: '',
   })
 
-  const { email, password, passwordConfirm, userName } = form
+  const { email, password, passwordConfirm, displayName, nickName } = form
   const router = useRouter()
 
   // TODO: 회원가입 버튼 클릭 이후 로직 작성 완료하기
@@ -28,7 +30,8 @@ export default function Signup() {
       email.trim() === '' ||
       password.trim() === '' ||
       passwordConfirm.trim() === '' ||
-      userName.trim() === ''
+      nickName.trim() === '' ||
+      displayName.trim() === ''
     ) {
       return
     }
@@ -37,8 +40,15 @@ export default function Signup() {
       return
     }
     setIsLoading(true)
+    const signupUserCredential: SignupUserCredential = {
+      email,
+      password,
+      displayName,
+      nickName,
+    }
     try {
-      const result = await signupWithEmailAndPassword(email, password, userName)
+      const result = await signupWithEmailAndPassword(signupUserCredential)
+      console.log(result)
       if (result) {
         router.push('/login')
       }
@@ -77,10 +87,17 @@ export default function Signup() {
         onChange={handleFormChange}
       />
       <BaseInput
-        name="userName"
+        name="nickName"
+        type="text"
+        placeholder="닉네임"
+        value={nickName}
+        onChange={handleFormChange}
+      />
+      <BaseInput
+        name="displayName"
         type="text"
         placeholder="이름"
-        value={userName}
+        value={displayName}
         onChange={handleFormChange}
       />
 

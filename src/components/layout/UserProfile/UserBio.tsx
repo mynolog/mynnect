@@ -19,13 +19,13 @@ export default function UserBio() {
           <>
             <AvatarImage
               src={user.photoURL}
-              alt={user.name || 'Annonymous'}
+              alt={user.displayName || 'Annonymous'}
               width={100}
               height={100}
               borderRadius="rounded-full"
             />
-            <span className="text-2xl font-extrabold">{user.name || 'Annonymous'}</span>
-            <span className="text-sm">{user.email || 'No email provided'}</span>
+            <span className="text-2xl font-extrabold">{user.displayName || 'Annonymous'}</span>
+            <span className="text-sm">@{user.nickName || 'Annonymous'}</span>
           </>
         )
       )}

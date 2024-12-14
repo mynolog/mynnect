@@ -1,4 +1,6 @@
-import { auth } from '@/config/firebaseConfig'
+import { auth, db } from '@/config/firebaseConfig'
+import { User } from '@/types/userTypes'
+import { getDoc, doc } from 'firebase/firestore'
 
 export const fetchUser = async () => {
   const storedUser = localStorage.getItem('user')
@@ -11,14 +13,19 @@ export const fetchUser = async () => {
     return null
   }
 
-  const user = {
-    name: currentUser.displayName,
-    email: currentUser.email,
-    photoURL: currentUser.photoURL,
-    uid: currentUser.uid,
+  let user: User | null = null
+  const userRef = doc(db, 'users', currentUser.uid)
+  const userDoc = await getDoc(userRef)
+  if (userDoc.exists()) {
+    const existedUser = userDoc.data() as User
+    user = {
+      ...existedUser,
+    }
   }
 
-  localStorage.setItem('user', JSON.stringify(user))
+  if (user) {
+    localStorage.setItem('user', JSON.stringify(user))
+  }
 
   return user
 }
