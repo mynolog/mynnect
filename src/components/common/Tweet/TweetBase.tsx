@@ -31,7 +31,7 @@ export default function TweetBase({ error, setError, text, setText }: TweetBaseP
           {user && (
             <AvatarImage
               src={user.photoURL}
-              alt={user.name}
+              alt={user.displayName || 'Anonymous'}
               width={50}
               height={50}
               borderRadius="rounded-full"

@@ -95,7 +95,7 @@ export default function TweetItem({ tweet }: TweetItemProps) {
       <div className="flex items-start">
         <AvatarImage
           src={tweet.photoURL}
-          alt={tweet.name}
+          alt={tweet.nickName}
           width={40}
           height={40}
           borderRadius="rounded-full"
@@ -151,7 +151,7 @@ export default function TweetItem({ tweet }: TweetItemProps) {
           )}
         </div>
         <div className="flex justify-end items-start gap-3">
-          <span className="text-github-gray text-xs font-extrabold">{tweet.name}</span>
+          <span className="text-github-gray text-xs font-extrabold">{tweet.nickName}</span>
           <div className="flex flex-col items-end justify-center">
             <span className="text-native-gray-600 text-xs">
               {getTimeDifference(tweet.createdAt)}

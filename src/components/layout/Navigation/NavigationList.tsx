@@ -59,7 +59,7 @@ export default function NavigationList() {
                   <AvatarImage
                     borderRadius="rounded-full"
                     src={user.photoURL}
-                    alt={user.name}
+                    alt={user.displayName || 'Anonymous'}
                     width={22}
                     height={22}
                     fontSize="text-xl"

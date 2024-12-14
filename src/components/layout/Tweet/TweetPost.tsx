@@ -26,7 +26,7 @@ export default function TweetPost() {
         const newTweet: Tweet = {
           id: '0',
           uid: user.uid,
-          name: user.name,
+          nickName: user.nickName || 'Anonymous',
           photoURL: user.photoURL,
           text,
           createdAt: Date.now(),

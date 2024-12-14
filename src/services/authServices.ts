@@ -6,9 +6,9 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { providersMap } from '@/config/providersMap'
-import { SignupUserCredential } from '@/types/userTypes'
+import { SignupUserCredential, User } from '@/types/userTypes'
 
 export const loginWithProvider = async (provider: 'google' | 'github') => {
   if (providersMap[provider].auth === null) {
@@ -20,18 +20,58 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
     document.cookie = `token=${idToken}; path=/; max-age=3600; secure`
 
     const { uid, email, displayName, photoURL } = userCredential.user
-    const newUser = {
+    const userRef = doc(db, 'users', uid)
+    const userDoc = await getDoc(userRef)
+
+    let newUser: User | null = null
+    if (userDoc.exists()) {
+      const existedUser = userDoc.data() as User
+      console.log(existedUser)
+      if (!existedUser.nickName) {
+        window.location.href = '/signup/social'
+      }
+      newUser = {
+        ...existedUser,
+      }
+      await setDoc(doc(db, 'users', uid), newUser)
+      return newUser
+    }
+
+    newUser = {
       uid,
       email,
       displayName,
       photoURL,
+      nickName: null,
     }
     await setDoc(doc(db, 'users', uid), newUser)
-    return newUser
+    window.location.href = '/signup/social'
   } catch (e) {
     console.error(e)
     throw e
   }
+}
+
+export const socialSignupComplete = async (nickName: string, uid: string) => {
+  try {
+    const userRef = doc(db, 'users', uid)
+    const userDoc = await getDoc(userRef)
+
+    let newUser: User | null = null
+    if (userDoc.exists()) {
+      const existedUser = userDoc.data() as User
+      console.log(existedUser)
+      newUser = {
+        ...existedUser,
+        nickName,
+      }
+      await setDoc(userRef, newUser, { merge: true })
+      return newUser
+    }
+  } catch (e) {
+    console.error(e)
+  }
+  return null
 }
 
 //TODO: 로컬 로그인 로직 완료하기
@@ -55,9 +95,9 @@ export const signupWithEmailAndPassword = async ({
   nickName,
 }: SignupUserCredential) => {
   try {
-    const result = await createUserWithEmailAndPassword(auth, email, password)
+    const userCredential = await createUserWithEmailAndPassword(auth, email!, password)
 
-    const { user } = result
+    const { user } = userCredential
     await updateProfile(user, { displayName })
 
     const newUser = {

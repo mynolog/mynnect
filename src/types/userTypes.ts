@@ -1,6 +1,6 @@
 export type User = {
-  email: string
-  displayName: string
+  email: string | null
+  displayName: string | null
   photoURL: string | null
   uid: string
   nickName: string | null

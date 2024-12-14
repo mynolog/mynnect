@@ -1,10 +1,10 @@
 'use client'
 
 import AvatarImage from '@/components/common/Image/AvatarImage'
-import { useUser } from '@/hooks/useUser'
+import { useCurrentUser } from '@/hooks/useCurrentUser'
 
-export default function UserBio() {
-  const { user, isLoading } = useUser()
+export default function UserBio({ uid }: { uid: string }) {
+  const { user, isLoading } = useCurrentUser(uid)
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function UserBio() {
               height={100}
               borderRadius="rounded-full"
             />
-            <span className="text-2xl font-extrabold">{user.displayName || 'Annonymous'}</span>
+            <span className="text-2xl font-extrabold">{user.displayName || 'Anonymous'}</span>
             <span className="text-sm">@{user.nickName || 'Annonymous'}</span>
           </>
         )

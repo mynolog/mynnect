@@ -1,7 +1,7 @@
 export type Tweet = {
   uid: string
   id: string
-  name: string
+  nickName: string
   text: string
   createdAt: number
   updatedAt: number
