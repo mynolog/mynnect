@@ -1,5 +1,5 @@
 import { type BaseButtonProps } from './BaseButton'
-import { providerMap } from '@/config/providerMap'
+import { providersMap } from '@/config/providersMap'
 import BaseButton from './BaseButton'
 
 type LoginButtonProps = {
@@ -7,7 +7,7 @@ type LoginButtonProps = {
 } & BaseButtonProps
 
 export default function LoginButton({ provider, onClick = () => {} }: LoginButtonProps) {
-  const { bgColor, textColor, icon, label } = providerMap[provider]
+  const { bgColor, textColor, icon, label } = providersMap[provider]
 
   return (
     <BaseButton

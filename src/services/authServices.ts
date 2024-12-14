@@ -7,14 +7,14 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
-import { providerMap } from '@/config/providerMap'
+import { providersMap } from '@/config/providersMap'
 
 export const loginWithProvider = async (provider: 'google' | 'github') => {
-  if (providerMap[provider].auth === null) {
+  if (providersMap[provider].auth === null) {
     return
   }
   try {
-    const userCredential = await signInWithPopup(auth, providerMap[provider].auth)
+    const userCredential = await signInWithPopup(auth, providersMap[provider].auth)
     const idToken = await userCredential.user.getIdToken()
     document.cookie = `token=${idToken}; path=/; max-age=3600; secure`
 

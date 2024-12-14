@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { RiAccountCircle2Line } from 'react-icons/ri'
-import { navigationList } from '@/config/navigationList'
+import { navList } from '@/config/navList'
 import AvatarImage from '@/components/common/Image/AvatarImage'
 import { useUser } from '@/hooks/useUser'
 import LogoutButton from '@/components/common/Button/LogoutButton'
@@ -27,7 +27,7 @@ export default function NavigationList() {
   return (
     <>
       <ul className="w-full flex flex-col gap-3">
-        {navigationList.map((item) => {
+        {navList.map((item) => {
           const isActive = pathname === item.href
 
           return (

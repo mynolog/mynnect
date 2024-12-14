@@ -7,7 +7,7 @@ type NavigationItem = {
   href: string
 }
 
-export const navigationList: NavigationItem[] = [
+export const navList: NavigationItem[] = [
   {
     id: '1',
     icon: <RiHomeLine />,

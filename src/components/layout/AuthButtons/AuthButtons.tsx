@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import LoginButton from '@/components/common/Button/LoginButton'
 import { loginWithProvider } from '@/services/authServices'
 import BaseButton from '@/components/common/Button/BaseButton'
-import { providerMap } from '@/config/providerMap'
+import { providersMap } from '@/config/providersMap'
 import { FaUserPlus } from 'react-icons/fa'
 import Spinner from '@/components/common/Spinner/Spinner'
 
@@ -57,13 +57,13 @@ export default function AuthButtons() {
         <div className="flex flex-col justify-center items-center gap-5">
           <div className="flex flex-col gap-3">
             <LoginButton provider="google" onClick={() => handleLoginWithProvider('google')}>
-              <span>{providerMap['google'].label}</span>
+              <span>{providersMap['google'].label}</span>
             </LoginButton>
             <LoginButton provider="github" onClick={() => handleLoginWithProvider('github')}>
-              <span>{providerMap['github'].label}</span>
+              <span>{providersMap['github'].label}</span>
             </LoginButton>
             <LoginButton provider="local" onClick={moveToLoginWithEmail}>
-              <span>{providerMap['local'].label}</span>
+              <span>{providersMap['local'].label}</span>
             </LoginButton>
           </div>
           <span className="text-lime-green-900 font-extrabold">OR</span>

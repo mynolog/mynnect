@@ -1,7 +1,7 @@
 import { GithubAuthProvider, GoogleAuthProvider, AuthProvider } from 'firebase/auth'
 import { FaGoogle, FaGithub, FaEnvelope } from 'react-icons/fa'
 
-type ProviderMap = {
+type ProvidersMap = {
   [key: string]: {
     icon: React.ReactNode
     bgColor: 'bg-off-white-500' | 'bg-github-gray'
@@ -14,7 +14,7 @@ type ProviderMap = {
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
 
-export const providerMap: ProviderMap = {
+export const providersMap: ProvidersMap = {
   google: {
     icon: <FaGoogle />,
     bgColor: 'bg-off-white-500',
