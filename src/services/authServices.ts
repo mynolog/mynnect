@@ -14,9 +14,11 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
     return
   }
   try {
-    const result = await signInWithPopup(auth, providerMap[provider].auth)
+    const userCredential = await signInWithPopup(auth, providerMap[provider].auth)
+    const idToken = await userCredential.user.getIdToken()
+    document.cookie = `token=${idToken}; path=/; max-age=3600; secure`
 
-    const { uid, email, displayName, photoURL } = result.user
+    const { uid, email, displayName, photoURL } = userCredential.user
     const newUser = {
       uid,
       email,
@@ -34,8 +36,10 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
 //TODO: 로컬 로그인 로직 완료하기
 export const loginWithEmailAndPassword = async (email: string, password: string) => {
   try {
-    const result = await signInWithEmailAndPassword(auth, email, password)
-    return result
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await userCredential.user.getIdToken()
+    document.cookie = `token=${idToken}; path=/; max-age=3600; secure`
+    return userCredential
   } catch (e) {
     console.error(e)
     throw e

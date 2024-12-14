@@ -4,6 +4,7 @@ import { mutate } from 'swr'
 import { logout } from '@/services/authServices'
 import BaseButton from './BaseButton'
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 export default function LogoutButton() {
   const router = useRouter()
@@ -14,6 +15,7 @@ export default function LogoutButton() {
       if (result) {
         mutate('user', null, false)
         localStorage.removeItem('user')
+        Cookies.remove('token')
         router.push('/')
       }
     } catch (e) {
