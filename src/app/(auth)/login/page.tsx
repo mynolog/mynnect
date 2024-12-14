@@ -34,6 +34,7 @@ export default function LoginWithEmail() {
       const result = await loginWithEmailAndPassword(email, password)
       if (result) {
         const { currentUser } = auth
+        console.log(currentUser)
         const newUser = currentUser
           ? {
               name: currentUser.displayName,
