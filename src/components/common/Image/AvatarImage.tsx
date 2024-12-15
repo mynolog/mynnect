@@ -17,7 +17,7 @@ export default function AvatarImage({
   alt,
   src,
   borderRadius,
-  fontSize = 'text-5xl',
+  fontSize = 'text-2xl',
 }: AvatarImageProps) {
   if (!src) {
     return <DefaultAvatarImage width={width} height={height} fontSize={fontSize} />

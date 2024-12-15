@@ -23,7 +23,7 @@ export default function UserTweetTimeline({ uid }: { uid: string }) {
     <ul className="w-full mt-12 flex flex-col gap-8">
       {isLoading || !tweets.length ? (
         <div className="relative w-full h-screen flex flex-col gap-9">
-          {Array.from({ length: 5 }, (_, index) => (
+          {Array.from({ length: tweets.length }, (_, index) => (
             <div key={index} className="w-5/6 flex gap-4 animate-pulse">
               <div className="w-9 h-9 bg-gray-300 rounded-full"></div>
               <div className="w-11/12 h-28 bg-gray-300 rounded-2xl"></div>
