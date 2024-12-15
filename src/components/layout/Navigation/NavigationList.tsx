@@ -14,7 +14,7 @@ export default function NavigationList() {
   const { user, isLoading } = useUser()
   const pathname = usePathname()
   const router = useRouter()
-  const isProfileActive = pathname === `/profile/${user?.uid}`
+  const isProfileActive = pathname === `/profile/${user?.nickName}`
 
   useEffect(() => {
     setIsMounted(true)
@@ -52,9 +52,9 @@ export default function NavigationList() {
           user && (
             <li
               className={`${isProfileActive ? 'bg-lime-green-500 opacity-100 text-off-white-500' : 'opacity-80'}  flex px-4 w-full h-10 rounded-xl hover:bg-lime-green-500 hover:opacity-100 hover:text-off-white-500 hover:cursor-pointer transition-all duration-200 ease-linear`}
-              onClick={() => handleNavigation(`/profile/${user.uid}`)}
+              onClick={() => handleNavigation(`/profile/${user.nickName}`)}
             >
-              <Link href={`/profile/${user?.uid}`} className="flex items-center gap-2">
+              <Link href={`/profile/${user?.nickName}`} className="flex items-center gap-2">
                 {user && isMounted ? (
                   <AvatarImage
                     borderRadius="rounded-full"

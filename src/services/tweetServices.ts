@@ -1,6 +1,6 @@
 import type { Tweet } from '@/types/tweetTypes'
 import { db } from '@/config/firebaseConfig'
-import { collection, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { collection, doc, setDoc, deleteDoc, getDocs } from 'firebase/firestore'
 
 export const createTweet = async (tweet: Tweet) => {
   try {
@@ -15,6 +15,14 @@ export const createTweet = async (tweet: Tweet) => {
     console.error(e)
   }
   return false
+}
+
+export const fetchTweets = async (): Promise<Tweet[]> => {
+  const collectionRef = collection(db, 'tweets')
+  const snapshot = await getDocs(collectionRef)
+  const tweets = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as Tweet[]
+
+  return tweets
 }
 
 export const updateTweet = async (docId: string, newTweet: Tweet) => {
