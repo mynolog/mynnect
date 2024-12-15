@@ -31,6 +31,8 @@ export default function TweetPost() {
           text,
           createdAt: Date.now(),
           updatedAt: 0,
+          likes: 0,
+          likedBy: [],
         }
         const result = await createTweet(newTweet)
         if (!result) {

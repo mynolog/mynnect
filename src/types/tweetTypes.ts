@@ -6,4 +6,6 @@ export type Tweet = {
   createdAt: number
   updatedAt: number
   photoURL: string | null
+  likes: number
+  likedBy: string[]
 }

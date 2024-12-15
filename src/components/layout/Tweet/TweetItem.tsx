@@ -2,12 +2,15 @@
 
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { MdOutlineDeleteForever, MdOutlineModeEditOutline, MdCheck, MdClose } from 'react-icons/md'
+import { FaRegHeart, FaHeart } from 'react-icons/fa'
 import type { Tweet } from '@/types/tweetTypes'
 import AvatarImage from '../../common/Image/AvatarImage'
 import { getTimeDifference } from '@/utils/getUtils'
 import { useUser } from '@/hooks/useUser'
 import { deleteTweet, updateTweet } from '@/services/tweetServices'
 import Spinner from '@/components/common/Spinner/Spinner'
+import { arrayRemove, arrayUnion, doc, increment, updateDoc } from 'firebase/firestore'
+import { db } from '@/config/firebaseConfig'
 
 type TweetItemProps = {
   tweet: Tweet
@@ -21,6 +24,8 @@ export default function TweetItem({ tweet }: TweetItemProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [isLoading, setIsLoading] = useState(false)
 
+  const [isLiked, setIsLiked] = useState(false)
+
   useEffect(() => {
     if (user && user.uid === tweet.uid) {
       setIsAuthor(true)
@@ -31,6 +36,12 @@ export default function TweetItem({ tweet }: TweetItemProps) {
   useEffect(() => {
     adjustTextareaHeight()
   }, [newText])
+
+  useEffect(() => {
+    if (user) {
+      setIsLiked(tweet.likedBy.includes(user.uid))
+    }
+  }, [user, tweet.likedBy])
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current
@@ -88,6 +99,22 @@ export default function TweetItem({ tweet }: TweetItemProps) {
 
   const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setNewText(e.target.value)
+  }
+
+  const handleToogleLike = async (id: string, uid: string, isLiked: boolean) => {
+    const docRef = doc(db, 'tweets', id)
+
+    if (isLiked) {
+      await updateDoc(docRef, {
+        likes: increment(-1),
+        likedBy: arrayRemove(uid),
+      })
+    } else {
+      await updateDoc(docRef, {
+        likes: increment(1),
+        likedBy: arrayUnion(uid),
+      })
+    }
   }
 
   return (
@@ -150,15 +177,31 @@ export default function TweetItem({ tweet }: TweetItemProps) {
             </div>
           )}
         </div>
-        <div className="flex justify-end items-start gap-3">
-          <span className="text-github-gray text-xs font-extrabold">{tweet.nickName}</span>
-          <div className="flex flex-col items-end justify-center">
-            <span className="text-native-gray-600 text-xs">
-              {getTimeDifference(tweet.createdAt)}
-            </span>
-            <span className="text-native-gray-600 text-xs">
-              {tweet.updatedAt !== 0 && <span>수정됨</span>}
-            </span>
+        <div className="flex h-5 justify-between items-center gap-3">
+          {user && (
+            <div className="flex items-center justify-center gap-2">
+              {isLiked ? (
+                <FaHeart
+                  onClick={() => handleToogleLike(tweet.id, user.uid, isLiked)}
+                  className="cursor-pointer text-red-700 hover:scale-75 transition-all duration-200 ease-linear"
+                />
+              ) : (
+                <FaRegHeart
+                  onClick={() => handleToogleLike(tweet.id, user.uid, isLiked)}
+                  className="cursor-pointer hover:text-red-700 hover:scale-125 transition-all duration-200 ease-linear"
+                />
+              )}
+              <span className="text-xs text-native-gray-600 font-extrabold">{tweet.likes}</span>
+            </div>
+          )}
+          <div className="flex gap-3">
+            <span className="text-github-gray text-xs font-extrabold">{tweet.nickName}</span>
+            <div className="flex flex-col items-end justify-center">
+              <div className="text-native-gray-600 text-xs flex gap-1">
+                <span>{getTimeDifference(tweet.createdAt)}</span>
+                <span className="text-xs">{tweet.updatedAt !== 0 && <span>(수정됨)</span>}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
