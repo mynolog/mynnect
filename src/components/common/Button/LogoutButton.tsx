@@ -5,6 +5,7 @@ import { logout } from '@/services/authServices'
 import BaseButton from './BaseButton'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { LuLogOut } from 'react-icons/lu'
 
 export default function LogoutButton() {
   const router = useRouter()
@@ -27,11 +28,12 @@ export default function LogoutButton() {
     <BaseButton
       onClick={handleLogout}
       textColor="text-off-white-500"
-      width="w-28"
+      width="w-16"
       height="h-8"
       bgColor="bg-github-gray"
     >
-      <span className="text-sm">로그아웃</span>
+      <LuLogOut className="text-lg font-extrabold block md:hidden" />
+      <span className="text-xs font-extrabold hidden md:inline">로그아웃</span>
     </BaseButton>
   )
 }
