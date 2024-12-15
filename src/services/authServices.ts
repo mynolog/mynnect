@@ -60,7 +60,6 @@ export const socialSignupComplete = async (nickName: string, uid: string) => {
     let newUser: User | null = null
     if (userDoc.exists()) {
       const existedUser = userDoc.data() as User
-      console.log(existedUser)
       newUser = {
         ...existedUser,
         nickName,
@@ -122,5 +121,27 @@ export const logout = async () => {
   } catch (e) {
     console.error(e)
     throw e
+  }
+}
+
+export const updateUserProfile = async (uid: string, displayName: string) => {
+  try {
+    const userRef = doc(db, 'users', uid)
+    const userDoc = await getDoc(userRef)
+    if (userDoc.exists()) {
+      const existedUser = userDoc.data()
+      await setDoc(
+        userRef,
+        {
+          ...existedUser,
+          displayName,
+        },
+        {
+          merge: true,
+        },
+      )
+    }
+  } catch (e) {
+    console.error(e)
   }
 }
