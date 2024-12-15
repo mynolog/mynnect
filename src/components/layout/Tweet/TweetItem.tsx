@@ -135,7 +135,7 @@ export default function TweetItem({ tweet }: TweetItemProps) {
           <textarea
             ref={textareaRef}
             maxLength={150}
-            className={`w-full h-auto p-2 resize-none rounded-md  disabled:bg-white outline-none ${isUpdateMode ? 'border-2 border-steel-blue-600' : ''}`}
+            className={`w-full cursor-auto h-auto p-2 resize-none rounded-md  disabled:bg-white outline-none ${isUpdateMode ? 'border-2 border-steel-blue-600' : ''}`}
             onChange={handleTextareaChange}
             value={newText}
             disabled={!isUpdateMode}

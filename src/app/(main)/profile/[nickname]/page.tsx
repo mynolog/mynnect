@@ -4,6 +4,7 @@ import UserBio from '@/components/layout/UserProfile/UserBio'
 import { useUser } from '@/hooks/useUser'
 
 export default function ProfileDetail() {
+  //TODO: nickname param 기반으로 렌더링하는 방식으로 수정
   const { user, isLoading } = useUser()
 
   return (

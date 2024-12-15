@@ -9,6 +9,9 @@ const notoSansKR = Noto_Sans_KR({
 
 export const metadata = {
   title: '환영합니다:) | mynnect.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
