@@ -26,7 +26,6 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
     let newUser: User | null = null
     if (userDoc.exists()) {
       const existedUser = userDoc.data() as User
-      console.log(existedUser)
       if (!existedUser.nickName) {
         return { redirectToSignupComplete: true }
       }
@@ -68,9 +67,7 @@ export const checkNickNameExist = async (nickName: string) => {
 export const socialSignupComplete = async (nickName: string, uid: string) => {
   try {
     const userRef = doc(db, 'users', uid)
-    console.log(userRef)
     const userDoc = await getDoc(userRef)
-    console.log(userDoc)
 
     let newUser: User | null = null
     if (userDoc.exists()) {

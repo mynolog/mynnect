@@ -48,7 +48,6 @@ export default function Signup() {
     }
     try {
       const result = await signupWithEmailAndPassword(signupUserCredential)
-      console.log(result)
       if (result) {
         router.push('/login')
       }

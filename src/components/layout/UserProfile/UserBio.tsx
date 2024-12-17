@@ -15,7 +15,6 @@ type UserBioProps = {
 export default function UserBio({ uid, isEditable = false }: UserBioProps) {
   const { user, isLoading } = useCurrentUser(uid)
   const [isEditMode, setIsEditMode] = useState(false)
-  const [isSubmitLoading, setIsSubmitLoading] = useState(false)
   const [newDisplayName, setNewDisplayName] = useState(user?.displayName)
 
   useEffect(() => {
@@ -36,7 +35,6 @@ export default function UserBio({ uid, isEditable = false }: UserBioProps) {
     if (newDisplayName === '' || newDisplayName?.trim() === '') {
       return
     }
-    setIsSubmitLoading(true)
     if (newDisplayName) {
       try {
         await updateUserProfile(uid, newDisplayName)
@@ -44,7 +42,6 @@ export default function UserBio({ uid, isEditable = false }: UserBioProps) {
       } catch (e) {
         console.error(e)
       } finally {
-        setIsSubmitLoading(false)
       }
     }
   }
