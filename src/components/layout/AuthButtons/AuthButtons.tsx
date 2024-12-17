@@ -20,17 +20,21 @@ export default function AuthButtons() {
     try {
       const result = await loginWithProvider(provider)
       if (result) {
-        const { currentUser } = auth
-        const newUser = currentUser
-          ? {
-              name: currentUser.displayName,
-              email: currentUser.email,
-              photoURL: currentUser.photoURL,
-              uid: currentUser.uid,
-            }
-          : null
-        mutate('user', newUser, false)
-        router.push('/home')
+        if (result.redirectToSignupComplete) {
+          router.push('/signup/social')
+        } else {
+          const { currentUser } = auth
+          const newUser = currentUser
+            ? {
+                name: currentUser.displayName,
+                email: currentUser.email,
+                photoURL: currentUser.photoURL,
+                uid: currentUser.uid,
+              }
+            : null
+          mutate('user', newUser, false)
+          router.push('/home')
+        }
       }
     } catch (e) {
       console.error(e)

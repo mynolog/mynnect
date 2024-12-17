@@ -28,13 +28,13 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
       const existedUser = userDoc.data() as User
       console.log(existedUser)
       if (!existedUser.nickName) {
-        window.location.href = '/signup/social'
+        return { redirectToSignupComplete: true }
       }
       newUser = {
         ...existedUser,
       }
       await setDoc(doc(db, 'users', uid), newUser)
-      return newUser
+      return { newUser }
     }
 
     newUser = {
@@ -45,7 +45,7 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
       nickName: null,
     }
     await setDoc(doc(db, 'users', uid), newUser)
-    window.location.href = '/signup/social'
+    return { redirectToSignupComplete: true }
   } catch (e) {
     console.error(e)
     throw e
@@ -55,7 +55,9 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
 export const socialSignupComplete = async (nickName: string, uid: string) => {
   try {
     const userRef = doc(db, 'users', uid)
+    console.log(userRef)
     const userDoc = await getDoc(userRef)
+    console.log(userDoc)
 
     let newUser: User | null = null
     if (userDoc.exists()) {
@@ -64,7 +66,7 @@ export const socialSignupComplete = async (nickName: string, uid: string) => {
         ...existedUser,
         nickName,
       }
-      await setDoc(userRef, newUser, { merge: true })
+      await setDoc(userRef, newUser)
       return newUser
     }
   } catch (e) {
