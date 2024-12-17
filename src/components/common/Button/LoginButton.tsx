@@ -6,7 +6,7 @@ type LoginButtonProps = {
   provider: 'google' | 'github' | 'local'
 } & BaseButtonProps
 
-export default function LoginButton({ provider, onClick = () => {} }: LoginButtonProps) {
+export default function LoginButton({ provider, onClick = () => {}, className }: LoginButtonProps) {
   const { bgColor, textColor, icon, label } = providersMap[provider]
 
   return (
@@ -16,6 +16,7 @@ export default function LoginButton({ provider, onClick = () => {} }: LoginButto
       onClick={onClick}
       width="w-64"
       height="h-12"
+      className={className}
     >
       {icon}
       {label}

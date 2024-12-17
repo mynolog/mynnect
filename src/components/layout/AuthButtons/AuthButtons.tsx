@@ -66,7 +66,12 @@ export default function AuthButtons() {
             <LoginButton provider="github" onClick={() => handleLoginWithProvider('github')}>
               <span>{providersMap['github'].label}</span>
             </LoginButton>
-            <LoginButton provider="local" onClick={moveToLoginWithEmail}>
+            <LoginButton
+              disabled={true}
+              className="cursor-not-allowed"
+              provider="local"
+              onClick={moveToLoginWithEmail}
+            >
               <span>{providersMap['local'].label}</span>
             </LoginButton>
           </div>
@@ -78,6 +83,8 @@ export default function AuthButtons() {
               height="h-12"
               bgColor="bg-lime-green-900"
               textColor="text-off-white-500"
+              className="cursor-not-allowed"
+              disabled={true}
             >
               <FaUserPlus />
               이메일로 가입하기
