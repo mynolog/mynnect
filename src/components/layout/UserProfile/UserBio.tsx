@@ -72,15 +72,15 @@ export default function UserBio({ uid, isEditable = false }: UserBioProps) {
               height={100}
               borderRadius="rounded-full"
             />
-            <div className="flex items-center gap-3 text-2xl font-extrabold mt-2">
+            <div className="w-full flex items-center gap-3 text-2xl font-extrabold mt-2">
               {isEditable && isEditMode ? (
                 <input
-                  className="rounded-xl text-xl p-2 outline-none focus:border-4 focus:border-lime-green-300"
+                  className="rounded-xl text-sm p-2 outline-none focus:border-2 focus:border-steel-blue-600"
                   value={newDisplayName || ''}
                   onChange={handleDisplayNameChange}
                 />
               ) : (
-                <span>{user.displayName || 'Anonymous'}</span>
+                <p className="min-w-full">{user.displayName || 'Anonymous'}</p>
               )}
               <div className="flex w-full">
                 {isEditable && (
