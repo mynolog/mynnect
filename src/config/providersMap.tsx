@@ -4,7 +4,7 @@ import { FaGoogle, FaGithub, FaEnvelope } from 'react-icons/fa'
 type ProvidersMap = {
   [key: string]: {
     icon: React.ReactNode
-    bgColor: 'bg-off-white-500' | 'bg-github-gray'
+    bgColor: 'bg-off-white-500' | 'bg-github-gray' | 'bg-google-blue'
     textColor: 'text-dim-gray-600' | 'text-off-white-500'
     label: string
     auth: AuthProvider | null
@@ -17,8 +17,8 @@ const githubProvider = new GithubAuthProvider()
 export const providersMap: ProvidersMap = {
   google: {
     icon: <FaGoogle />,
-    bgColor: 'bg-off-white-500',
-    textColor: 'text-dim-gray-600',
+    bgColor: 'bg-google-blue',
+    textColor: 'text-off-white-500',
     label: '구글 계정으로 로그인',
     auth: googleProvider,
   },

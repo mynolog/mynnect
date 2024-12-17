@@ -19,6 +19,7 @@ const config: Config = {
         'off-white-500': '#f5f5f5',
         'dim-gray-600': '#444444',
         'github-gray': '#333333',
+        'google-blue': '#4285f4',
       },
       keyframes: {
         shake: {

@@ -6,7 +6,7 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
 import { providersMap } from '@/config/providersMap'
 import { SignupUserCredential, User } from '@/types/userTypes'
 
@@ -49,6 +49,19 @@ export const loginWithProvider = async (provider: 'google' | 'github') => {
   } catch (e) {
     console.error(e)
     throw e
+  }
+}
+
+export const checkNickNameExist = async (nickName: string) => {
+  try {
+    const usersRef = collection(db, 'users')
+    const q = query(usersRef, where('nickName', '==', nickName))
+    const snapshot = await getDocs(q)
+
+    return !snapshot.empty
+  } catch (e) {
+    console.error(e)
+    return false
   }
 }
 
