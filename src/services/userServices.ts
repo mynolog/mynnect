@@ -4,8 +4,21 @@ import { getDoc, doc } from 'firebase/firestore'
 
 export const fetchUser = async () => {
   const storedUser = localStorage.getItem('user')
+
   if (storedUser) {
-    return JSON.parse(storedUser)
+    const userFromLocalStorage = JSON.parse(storedUser) as User
+
+    const { currentUser } = auth
+    if (currentUser && currentUser.uid !== userFromLocalStorage.uid) {
+      const userRef = doc(db, 'users', currentUser.uid)
+      const userDoc = await getDoc(userRef)
+      if (userDoc.exists()) {
+        const newUser = userDoc.data() as User
+        localStorage.setItem('user', JSON.stringify(newUser))
+        return newUser
+      }
+    }
+    return userFromLocalStorage
   }
 
   const { currentUser } = auth

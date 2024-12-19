@@ -7,12 +7,14 @@ import { createTweet } from '@/services/tweetServices'
 import { Tweet } from '@/types/tweetTypes'
 import Spinner from '../../common/Spinner/Spinner'
 import TweetBase from '../../common/Tweet/TweetBase'
+import { useCurrentUser } from '@/hooks/useCurrentUser'
 
 export default function TweetPost() {
   const [text, setText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const { user } = useUser()
+  const { user: currentUser } = useCurrentUser(user?.uid as string)
 
   const handleTweetSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -22,12 +24,12 @@ export default function TweetPost() {
     }
     try {
       setIsLoading(true)
-      if (user) {
+      if (currentUser) {
         const newTweet: Tweet = {
           id: '0',
-          uid: user.uid,
-          nickName: user.nickName || 'Anonymous',
-          photoURL: user.photoURL,
+          uid: currentUser.uid,
+          nickName: currentUser.nickName || 'Anonymous',
+          photoURL: currentUser.photoURL,
           text,
           createdAt: Date.now(),
           updatedAt: 0,
